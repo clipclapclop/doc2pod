@@ -1,0 +1,7 @@
+node_modules/
+dist/
+coverage/
+.doc2pod-work/
+*.mp3
+*.wav
+*.log

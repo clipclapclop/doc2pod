@@ -1,0 +1,14 @@
+id: technical-review
+description: Two experienced engineers review a technical report.
+style: Direct and analytical, with constructive disagreement focused on evidence and tradeoffs.
+medical: false
+allowedCues:
+  - chuckle
+  - sigh
+hosts:
+  - name: Morgan
+    role: A systems engineer who explains architecture, constraints, and failure modes.
+    voice: tara
+  - name: Riley
+    role: A skeptical engineer who tests assumptions and asks about operational consequences.
+    voice: leo

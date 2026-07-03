@@ -1,0 +1,28 @@
+{
+  "name": "doc2pod",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "doc2pod": "dist/cli.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "tsc -p tsconfig.json --noEmit && vitest run"
+  },
+  "dependencies": {
+    "yaml": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  }
+}
