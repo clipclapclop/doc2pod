@@ -1,5 +1,6 @@
 import {
   CUES,
+  CONTENT_MODES,
   PACES,
   REVIEW_CODES,
   TONES,
@@ -93,6 +94,13 @@ export function validateEpisode(value: unknown, profile: ShowProfile, maxWords: 
     description,
     blueprint: {
       sourceSummary: string(blueprintRaw.sourceSummary, "blueprint.sourceSummary"),
+      contentMode: (() => {
+        const mode = string(blueprintRaw.contentMode, "blueprint.contentMode");
+        if (!CONTENT_MODES.includes(mode as never)) throw new Error(`Invalid content mode '${mode}'`);
+        return mode as EpisodeDraft["blueprint"]["contentMode"];
+      })(),
+      listenerGoal: string(blueprintRaw.listenerGoal, "blueprint.listenerGoal"),
+      throughline: string(blueprintRaw.throughline, "blueprint.throughline"),
       targetScriptWords: targetScriptWords as number,
       budgetRationale: string(blueprintRaw.budgetRationale, "blueprint.budgetRationale"),
       coverage,

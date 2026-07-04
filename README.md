@@ -139,6 +139,19 @@ doc2pod doctor
 
 The image embeds pinned Orpheus and SNAC model revisions. Runtime networking is disabled for TTS.
 
+## Rebuilding after changes
+
+After changing the TypeScript source, prompts, profiles, or schemas, verify and rebuild the CLI:
+
+```sh
+npm run check
+npm run build
+```
+
+An existing `npm link` uses the rebuilt `dist/` files automatically. Run `npm link` again only if the link was removed or the project was moved.
+
+Prompt and profile changes do not require rebuilding the TTS Docker image. Rebuild that image with the `docker buildx build` command from Initial setup only after changing `tts-worker/` or its model dependencies.
+
 ## Sensitive documents
 
 `--sensitive` uses owner-only temporary storage, removes staging data on success and failure, suppresses subprocess details that could contain source material, and rejects `--keep-work`.
@@ -155,8 +168,14 @@ Orpheus rendering is serialized across concurrent `doc2pod` processes because th
 
 ## Pipeline behavior
 
-Codex generates a coverage blueprint and structured script, then reviews it against the source. Error-level editorial findings trigger up to two repair-and-review cycles. Remaining editorial errors produce a spoken quality notice; invalid structured output or audio failures stop the build.
+Codex first identifies the material's content mode, listener goal, throughline, and coverage needs, then generates a structured script. Procedural material is organized as usable ordered instructions; scientific material follows the question, methods, findings, interpretation, limitations, and implications supported by the source. Other material is organized as an argument, narrative, reference, report, or coherent mixture.
+
+The episode covers the subject directly instead of continually narrating the source as an artifact. It retains necessary technical terminology but uses the simplest vocabulary that preserves precision. Codex reviews the script for those presentation requirements as well as source fidelity. Error-level editorial findings trigger up to two repair-and-review cycles. Remaining editorial errors produce a spoken quality notice; invalid structured output or audio failures stop the build.
 
 Both hosts must speak, and neither may be reduced to a token role. Long turns are split into bounded sentence-level TTS requests to avoid mid-sentence truncation. If Orpheus still reaches its acoustic-token limit, the worker automatically retries that text as smaller requests. Audio segments are assembled and normalized into a mono MP3.
 
 Input documents are treated as untrusted content. Codex runs ephemerally in a read-only temporary workspace with user rules and web search disabled. Application prompts, schemas, and show profiles are versioned with this project.
+
+## Using output via ssh
+
+ssh user@<ip> 'cat "/path/to/file.mp3"' | ffplay -af "atempo=1.75" -

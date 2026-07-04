@@ -18,7 +18,15 @@ describe("TTS segmentation", () => {
     const draft: EpisodeDraft = {
       title: "Test",
       description: "Test",
-      blueprint: { sourceSummary: "Test", targetScriptWords: 80, budgetRationale: "Test", coverage: [{ id: "c", topic: "Test", importance: "essential" }] },
+      blueprint: {
+        sourceSummary: "Test",
+        contentMode: "report",
+        listenerGoal: "Understand the test.",
+        throughline: "Explain the test result.",
+        targetScriptWords: 80,
+        budgetRationale: "Test",
+        coverage: [{ id: "c", topic: "Test", importance: "essential" }],
+      },
       turns: [
         { id: "a", speaker: "host_a", parts: [{ kind: "speech", text: longSpeech }], delivery: { tone: "neutral", pace: "normal", pauseAfterMs: 400 } },
         { id: "b", speaker: "host_b", parts: [{ kind: "speech", text: "A contrasting response." }], delivery: { tone: "skeptical", pace: "normal", pauseAfterMs: 500 } },

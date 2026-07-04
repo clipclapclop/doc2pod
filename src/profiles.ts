@@ -29,8 +29,8 @@ export const BUILTIN_PROFILES: Record<string, ShowProfile> = Object.fromEntries(
   [
     profile(
       "expert-curious",
-      "A domain expert explains the source to an intelligent, curious non-specialist.",
-      "Warm, clear, and collaborative. The curious host asks useful questions without pretending ignorance.",
+      "A domain expert explains the subject to an intelligent, curious non-specialist.",
+      "Warm, clear, and collaborative. The curious host asks useful questions without pretending ignorance or competing for equal airtime.",
       "A careful domain expert who explains mechanisms, evidence, and uncertainty.",
       "An informed lay host who asks concise clarifying and consequence-focused questions.",
     ),

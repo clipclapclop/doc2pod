@@ -8,6 +8,10 @@ const WARNING_PHRASES: Record<ReviewCode, string> = {
   role_drift: "the conversation may not consistently follow the requested format",
   unsafe_medical_inference: "some medical interpretation may go beyond the source",
   poor_flow: "some parts of the conversation may be difficult to follow",
+  genre_mismatch: "the presentation may not fit the source material",
+  meta_narration: "the episode may discuss the source instead of directly covering its subject",
+  unclear_explanation: "some important ideas may not be explained clearly",
+  needless_complexity: "some language may be more complicated than the subject requires",
 };
 
 export function unresolvedErrorCodes(review: ReviewResult): ReviewCode[] {

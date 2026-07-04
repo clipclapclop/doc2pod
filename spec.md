@@ -66,7 +66,7 @@
 
   - The generation response contains:
       - Episode title and description.
-      - Coverage blueprint and adaptive word-budget rationale.
+      - Coverage blueprint with content mode, listener goal, throughline, and adaptive word-budget rationale.
       - Two host definitions and engine voice names.
       - Ordered turns containing speaker ID, speech/cue parts, tone, pace, and pauses.
 
@@ -74,7 +74,8 @@
     profile constraints programmatically.
 
   - Run semantic review against the source for coverage, unsupported claims, distorted uncertainty, duplication,
-    role adherence, and unsafe medical inference. Repair and re-review up to twice.
+    role adherence, unsafe medical inference, content-mode fit, avoidable meta narration, explanatory clarity, and
+    needless linguistic complexity. Repair and re-review up to twice.
 
   - If final editorial issues remain, still render the episode and prepend a fixed code-generated spoken warning
     summarizing safe categories such as incomplete coverage or possibly unsupported claims. Invalid structure or

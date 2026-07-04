@@ -17,6 +17,9 @@ function episode(): EpisodeDraft {
     description: "Two hosts explain a report.",
     blueprint: {
       sourceSummary: "The report contains one finding.",
+      contentMode: "report",
+      listenerGoal: "Understand the report's finding.",
+      throughline: "State the finding and explain its qualification.",
       targetScriptWords: 100,
       budgetRationale: "A short source needs a short episode.",
       coverage: [{ id: "finding", topic: "The finding", importance: "essential" }],

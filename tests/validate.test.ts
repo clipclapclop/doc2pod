@@ -7,6 +7,9 @@ const validEpisode = {
   description: "An example episode.",
   blueprint: {
     sourceSummary: "A compact source summary.",
+    contentMode: "report",
+    listenerGoal: "Understand the report's main finding.",
+    throughline: "Move from the measured result to its qualification.",
     targetScriptWords: 100,
     budgetRationale: "The document is short and moderately dense.",
     coverage: [{ id: "c1", topic: "Main result", importance: "essential" }],
@@ -37,6 +40,12 @@ describe("validation", () => {
       passed: true,
       issues: [{ code: "unsupported_claim", severity: "error", message: "Problem", turnIds: ["t2"] }],
     })).toThrow(/cannot pass/);
+  });
+
+  test("rejects an invalid content mode", () => {
+    const invalid = structuredClone(validEpisode);
+    invalid.blueprint.contentMode = "lecture";
+    expect(() => validateEpisode(invalid, BUILTIN_PROFILES["expert-curious"]!, 1000)).toThrow(/Invalid content mode/);
   });
 
   test("rejects a script spoken by only one host", () => {

@@ -1,4 +1,4 @@
-import { CUES, PACES, REVIEW_CODES, TONES } from "./types.js";
+import { CONTENT_MODES, CUES, PACES, REVIEW_CODES, TONES } from "./types.js";
 
 const stringEnum = (values: readonly string[]) => ({ type: "string", enum: [...values] });
 
@@ -12,9 +12,12 @@ export const episodeSchema = {
     blueprint: {
       type: "object",
       additionalProperties: false,
-      required: ["sourceSummary", "targetScriptWords", "budgetRationale", "coverage"],
+      required: ["sourceSummary", "contentMode", "listenerGoal", "throughline", "targetScriptWords", "budgetRationale", "coverage"],
       properties: {
         sourceSummary: { type: "string", minLength: 1 },
+        contentMode: stringEnum(CONTENT_MODES),
+        listenerGoal: { type: "string", minLength: 1 },
+        throughline: { type: "string", minLength: 1 },
         targetScriptWords: { type: "integer", minimum: 1 },
         budgetRationale: { type: "string", minLength: 1 },
         coverage: {

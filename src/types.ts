@@ -35,6 +35,17 @@ export interface CoverageItem {
   importance: "essential" | "major" | "supporting";
 }
 
+export const CONTENT_MODES = [
+  "procedural",
+  "scientific",
+  "argumentative",
+  "narrative",
+  "reference",
+  "report",
+  "mixed",
+] as const;
+export type ContentMode = (typeof CONTENT_MODES)[number];
+
 export type TurnPart =
   | { kind: "speech"; text: string }
   | { kind: "cue"; cue: Cue };
@@ -55,6 +66,9 @@ export interface EpisodeDraft {
   description: string;
   blueprint: {
     sourceSummary: string;
+    contentMode: ContentMode;
+    listenerGoal: string;
+    throughline: string;
     targetScriptWords: number;
     budgetRationale: string;
     coverage: CoverageItem[];
@@ -70,6 +84,10 @@ export const REVIEW_CODES = [
   "role_drift",
   "unsafe_medical_inference",
   "poor_flow",
+  "genre_mismatch",
+  "meta_narration",
+  "unclear_explanation",
+  "needless_complexity",
 ] as const;
 export type ReviewCode = (typeof REVIEW_CODES)[number];
 
